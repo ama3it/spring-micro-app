@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: userservice
+  datasource: 
+    url:  jdbc:postgresql://localhost:5432/fitnessdb
+    username: freewheel
+    password: ux24SHqEUv
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  
