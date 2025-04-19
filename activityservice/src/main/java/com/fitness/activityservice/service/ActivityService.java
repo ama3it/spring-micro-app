@@ -1,5 +1,7 @@
 package com.fitness.activityservice.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.fitness.activityservice.dto.ActivityRequest;
@@ -15,7 +17,7 @@ public class ActivityService {
 
     private final ActivityRepository activityRepository;
 
-    public Object trackActivity(ActivityRequest request) {
+    public ActivityResponse trackActivity(ActivityRequest request) {
         Activity activity = Activity.builder()
                 .userId(request.getUserId())
                 .type(request.getType())
@@ -30,6 +32,7 @@ public class ActivityService {
         return mapToResponse(savedActivity);   
     }
 
+
     private ActivityResponse mapToResponse(Activity activity) {
         ActivityResponse activityResponse = new ActivityResponse();
         activityResponse.setId(activity.getId());
@@ -42,5 +45,13 @@ public class ActivityService {
         activityResponse.setCreatedAt(activity.getCreatedAt());
         activityResponse.setUpdatedAt(activity.getUpdatedAt());
         return activityResponse;
+    }
+
+
+    public List<ActivityResponse> getUserActivities(String userId) {
+        List<Activity> activities=activityRepository.findByUserId(userId);
+        return activities.stream()
+                .map(this::mapToResponse)
+                .toList();
     }
 }
