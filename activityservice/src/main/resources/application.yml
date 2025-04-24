@@ -6,6 +6,11 @@ spring:
       uri: mongodb://semadish:dZB8UKQ1q1@localhost:27017/fitnessactivity?authSource=admin
       database: fitnessactivity
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 
 server:
   port: 8082
