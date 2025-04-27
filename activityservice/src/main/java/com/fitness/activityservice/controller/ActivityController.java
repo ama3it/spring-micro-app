@@ -32,7 +32,7 @@ public class ActivityController {
     }
 
 
-    @GetMapping()
+    @GetMapping("/user")
     public ResponseEntity<List<ActivityResponse>> getUserActivities(@RequestHeader("X-User-ID") String userId) {
     
         return ResponseEntity.ok(activityService.getUserActivities(userId));
